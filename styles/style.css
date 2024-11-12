@@ -64,3 +64,132 @@ header{
   color:var(--color-blanco);
   margin-bottom: 10px;
 }
+/* Estilos Categorias*/
+.categorias {
+  padding: 18px;
+}
+
+.categorias h2 {
+  margin-bottom: 20px;
+  color: var(--color-primario)
+}
+
+.carousel-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); 
+  gap: 20px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+/* Estilo de cada categoría */
+.categoria {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-snap-align: start;
+  min-width: 100px;
+}
+
+.categoria img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%; 
+  background-color: var(--color-secundario);
+}
+
+.categoria p {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+/*Estilos de las tarjetas*/
+.productos {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 10px; 
+  padding: 18px;
+}
+
+.producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd; 
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.img-producto{
+  display: flex;
+  justify-content: center;
+}
+
+.img-producto img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.info-producto{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.info-producto p:first-child ,.info-producto p:last-child {
+  font-size: 12px;
+  color: var(--color-gris); 
+}
+
+
+.inferior-producto{
+  display: flex;
+  flex-direction: column;
+}
+
+.inferior-producto p:first-child {
+  font-size: 18px;
+  color: var(--color-rojo);
+  font-weight: bold;
+  margin: 10px 0;
+}
+.cantidad {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.cantidad button {
+  background-color: var(--color-primario); 
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 50%; 
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.cantidad p {
+  margin: 0;
+  font-size: 16px;
+  color:var(--color-primario)
+}
+
+button.agregar {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.agregar:hover {
+  background-color: #3f6eab; 
+}
