@@ -1,0 +1,34 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+:root {
+  --color-primario: #1C319B; 
+  --color-secundario: #ffbd2e; 
+  --color-blanco: #ffffff;
+  --color-banner: #003780;
+  --color-rojo: #c80404;
+  --color-gris: #777777;
+}
+/*Estilos Header*/
+header{
+  background-color: var(--color-primario);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 18px;
+}
+#logo img {
+  max-width: 60px;
+  height: auto;
+}
+.container-header-icons{
+  display: flex;
+}
+#cart-icon{
+  margin-left: 5px;
+}
