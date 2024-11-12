@@ -267,3 +267,79 @@ footer {
   color: #AAAAAA;
   margin-top: 20px;
 }
+
+/* Estilos para tablets */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .productos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .carousel-container {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+}
+
+/* Estilos para desktop */
+@media (min-width: 1025px) {
+  .productos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .banner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .banner-text{
+    margin-left: 10%;
+    margin-top: 0;
+  }
+  .banner-text h1 {
+    letter-spacing: 10px;
+    font-size: 24px;
+  }
+
+  .banner-text h2 {
+    font-size: 32px;
+  }
+  .img-banner {
+    width: 40%; 
+  }
+
+  .img-banner img {
+    max-width: 100%;
+    height: auto;
+  } 
+  
+  footer {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 30px;
+    padding: 40px;
+    text-align: left;
+  }
+
+  .contacto {
+    grid-column: 1 / 2;
+    align-items: flex-start;
+  }
+
+  .newsletter {
+    grid-column: 2 / 3;
+    align-items: flex-start;
+  }
+
+  .newsletter-input {
+    justify-content: flex-start;
+  }
+
+  .copyright {
+    grid-column: 1 / 3;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+}
