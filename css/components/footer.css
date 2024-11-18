@@ -7,6 +7,11 @@
   color: var(--bg-color);
   text-align: center;
   font-family: Arial, sans-serif;
+  position: absolute;
+  width: 100%;
+}
+.footer.no-content {
+  bottom: 0;
 }
 
 .footer__contact {
