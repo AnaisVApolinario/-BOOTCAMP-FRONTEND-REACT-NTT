@@ -121,6 +121,17 @@
   background-color: #3f6eab; 
 }
 
+/*Empty*/
+.empty__message {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  text-align: center;
+  font-size: 1.2rem;
+  color: #00000038;
+
+}
+
 /* Media Query para pantallas mayores a 768px */
 @media (min-width: 768px) {
 
