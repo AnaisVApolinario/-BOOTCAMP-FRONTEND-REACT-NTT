@@ -4,215 +4,151 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TAM</title>
-    <link rel="icon" href="img/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>
-      <div id="menu-icon">
-        <img src="/img/iconos/icono-menu.svg" alt="Menú" class="icon" />
+    <header class="header">
+      <!-- Menu Icon -->
+      <i
+        class="header__menu bx bx-menu"
+        id="menu-icon"
+        style="color: #ffffff"
+      ></i>
+      <!-- Logo -->
+      <a href="#" class="header__logo">
+        <img
+          src="assets/images/logo.png"
+          alt="Logo de TAM"
+          class="header__logo-img"
+        />
+      </a>
+      <!-- Nav List -->
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <a href="#" class="nav__link nav__link--dropdown">Categorias</a>
+            <ul class="nav__submenu">
+              <li><a href="#" class="nav__submenu-link">Pages</a></li>
+              <li><a href="#" class="nav__submenu-link">Elements</a></li>
+              <li><a href="#" class="nav__submenu-link">Icons</a></li>
+            </ul>
+          </li>
+          <li class="nav__item">
+            <a href="#support" class="nav__link">Soporte</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Right Icons -->
+      <div class="header__icons">
+        <i class="bx bx-search" id="search-icon" style="color: #ffffff"></i>
+        <i class="bx bx-cart" style="color: #ffffff">
+          <span>0</span>
+        </i>
       </div>
-      <div id="logo">
-        <img src="/img/logo_tam.svg" alt="Logo de TAM" />
-      </div>
-      <div class="container-header-icons">
-        <div id="search-icon">
-          <img src="/img/iconos/icono-busqueda.svg" alt="Buscar" class="icon" />
-        </div>
-        <div id="cart-icon">
-          <a href="/carrito.html">
-            <img src="/img/iconos/icono-cart.svg" alt="Carrito" class="icon" />
-          </a>
-        </div>
+
+      <!-- Search box -->
+      <div class="search__box">
+        <input type="search" name="" id="" placeholder="Buscar..." />
       </div>
     </header>
-    <div class="banner">
-      <div class="banner-text">
-        <h1>TODO LO QUE NECESITAS</h1>
-        <h2>EN UN SOLO LUGAR</h2>
-      </div>
-      <div class="img-banner">
-        <img src="/img/bolsa.svg" alt="Banner" />
-      </div>
-    </div>
+    <!-- Overlay (invisible por defecto) -->
+    <div class="overlay"></div>
     <main>
-      <section class="categorias">
-        <h2>Categorías</h2>
-        <div class="carousel-container">
-          <div class="categoria">
-            <img src="img/verduras.png" alt="Verduras" />
-            <p>Verduras</p>
-          </div>
-          <div class="categoria">
-            <img src="img/abarrotes.png" alt="Abarrotes" />
-            <p>Abarrotes</p>
-          </div>
-          <div class="categoria">
-            <img src="img/frutas.png" alt="Frutas" />
-            <p>Frutas</p>
-          </div>
-          <div class="categoria">
-            <img src="img/lacteos.png" alt="Lacteos" />
-            <p>Lacteos</p>
-          </div>
-          <div class="categoria">
-            <img src="img/bebidas.png" alt="Bebidas" />
-            <p>Bebidas</p>
-          </div>
-          <div class="categoria">
-            <img src="img/limpieza.png" alt="Limpieza" />
-            <p>Limpieza</p>
-          </div>
-          
+      <!-- Banner -->
+      <div class="banner">
+        <div class="banner__text">
+          <h1>TODO LO QUE NECESITAS</h1>
+          <h2>EN UN SOLO LUGAR</h2>
         </div>
-      </section>
-      <section class="productos">
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/avena.png" alt="Avena" />
+        <div class="banner__img">
+          <img src="/assets/images/banner.png" alt="Banner" />
+        </div>
+      </div>
+      <!-- Products -->
+      <section class="products">
+        <div class="product">
+          <div class="product__top">
+            <div class="product__image">
+              <img src="assets/images/arroz3.png" alt="Avena" />
             </div>
-            <div class="info-producto">
-              <p>3 Ositos</p>
-              <p>Avena</p>
-              <p>Bolsa 135g</p>
+            <div class="product__info">
+              <p class="product__name">3 Ositos</p>
+              <p class="product__description">Avena</p>
+              <p class="product__weight">Bag 135g</p>
             </div>
           </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
+          <div class="product__bottom">
+            <p class="product__price">S/.2.50</p>
+            <div class="product__quantity">
+              <button class="product__quantity-button">-</button>
+              <p class="product__quantity-value">1</p>
+              <button class="product__quantity-button">+</button>
             </div>
-            <button class="agregar">Agregar</button>
+            <button class="product__add">Add</button>
           </div>
         </div>
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/aceite1.png" alt="Aceite" />
+        <div class="product">
+          <div class="product__top">
+            <div class="product__image">
+              <img src="assets/images/arroz3.png" alt="Avena" />
             </div>
-            <div class="info-producto">
-              <p>Uno</p>
-              <p>Aceite Vegetal</p>
-              <p>Botella 500ml</p>
-            </div>
-          </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
-            <button class="agregar">Agregar</button>
-          </div>
-        </div>
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/arroz1.png" alt="Arroz" />
-            </div>
-            <div class="info-producto">
-              <p>Costeño</p>
-              <p>Arroz Elaborado</p>
-              <p>Bolsa 5kg</p>
+            <div class="product__info">
+              <p class="product__name">3 Ositos</p>
+              <p class="product__description">Avena</p>
+              <p class="product__weight">Bag 135g</p>
             </div>
           </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
+          <div class="product__bottom">
+            <p class="product__price">S/.2.50</p>
+            <div class="product__quantity">
+              <button class="product__quantity-button">-</button>
+              <p class="product__quantity-value">1</p>
+              <button class="product__quantity-button">+</button>
             </div>
-            <button class="agregar">Agregar</button>
-          </div>
-        </div>
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/avena2.png" alt="Avena" />
-            </div>
-            <div class="info-producto">
-              <p>Cuisine</p>
-              <p>Avena | Hojuelas de avena precocida</p>
-              <p>Bolsa 1kg</p>
-            </div>
-          </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
-            <button class="agregar">Agregar</button>
-          </div>
-        </div>
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/arroz1.png" alt="Arroz" />
-            </div>
-            <div class="info-producto">
-              <p>Costeño</p>
-              <p>Arroz Elaborado</p>
-              <p>Bolsa 5kg</p>
-            </div>
-          </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
-            <button class="agregar">Agregar</button>
-          </div>
-        </div>
-        <div class="producto">
-          <div class="superior-producto">
-            <div class="img-producto">
-              <img src="img/avena2.png" alt="Avena" />
-            </div>
-            <div class="info-producto">
-              <p>Cuisine</p>
-              <p>Avena | Hojuelas de avena precocida</p>
-              <p>Bolsa 1kg</p>
-            </div>
-          </div>
-          <div class="inferior-producto">
-            <p>S/.2.50</p>
-            <div class="cantidad">
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
-            </div>
-            <button class="agregar">Agregar</button>
+            <button class="product__add">Add</button>
           </div>
         </div>
       </section>
     </main>
-    <footer>
-      <div class="contacto">
-        <h2>Contacto</h2>
-        <p>Dirección: Calle Rosas 123, Lima, Perú</p>
-        <p>Teléfono: +51 956 789 245</p>
-        <p>Correo: tam@gamil.com</p>
+    <footer class="footer">
+      <div class="footer__contact">
+        <h2 class="footer__title">Contacto</h2>
+        <p class="footer__item">
+          <i class="bx bxs-map"></i> Dirección: Calle Rosas 123, Lima, Perú
+        </p>
+        <p class="footer__item">
+          <i class="bx bxs-phone"></i> Teléfono: +51 956 789 245
+        </p>
+        <p class="footer__item">
+          <i class="bx bxs-envelope"></i> Correo: tam@gamil.com
+        </p>
       </div>
 
-      <div class="newsletter">
-        <h2>Suscríbete</h2>
-        <p>Recibe actualizaciones, accede a ofertas exclusivas y más.</p>
-        <div class="newsletter-input">
-          <input type="email" placeholder="Ingresa tu correo" required />
-          <button type="submit">Enviar</button>
+      <div class="footer__newsletter">
+        <h2 class="footer__title">Suscríbete</h2>
+        <p class="footer__description">
+          Recibe actualizaciones, accede a ofertas exclusivas y más.
+        </p>
+        <div class="footer__newsletter-input">
+          <input
+            class="footer__input"
+            type="email"
+            placeholder="Ingresa tu correo"
+            required
+          />
+          <button class="footer__button" type="submit">Enviar</button>
         </div>
       </div>
 
-      <p class="copyright">© 2024 TAM. Todos los derechos reservados.</p>
+      <p class="footer__copyright">
+        © 2024 TAM. Todos los derechos reservados.
+      </p>
     </footer>
   </body>
 </html>
