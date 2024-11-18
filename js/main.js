@@ -1,11 +1,14 @@
 import { header } from "./components/header.js";
 import { getProducts } from "./services/productsApi.js";
+import { getCategories } from "./services/categoriesApi.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   header();
   products();
+  categories();
 });
 
+// Products
 const products = async () => {
   try {
     const dataProduct = await getProducts();
@@ -142,5 +145,33 @@ const renderProducts = (products) => {
 
     // Agrego el producto al contenedor
     productsContainer.appendChild(productElement);
+  });
+};
+//Categorias
+const categories = async () => {
+  try {
+    const dataCategory = await getCategories();
+    renderCategories(dataCategory);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const renderCategories = (categories) => {
+  const categoriesDropdown = document.querySelector(".nav__submenu");
+  while (categoriesDropdown.firstChild) {
+    categoriesDropdown.removeChild(categoriesDropdown.firstChild);
+  }
+
+  categories.forEach((category) => {
+    const listItem = document.createElement("li");
+
+    const categoryLink = document.createElement("a");
+    // categoryLink.href = "#"; 
+    categoryLink.classList.add("nav__submenu-link");
+    categoryLink.textContent = category.name; 
+
+    listItem.appendChild(categoryLink);
+    categoriesDropdown.appendChild(listItem);
   });
 };
