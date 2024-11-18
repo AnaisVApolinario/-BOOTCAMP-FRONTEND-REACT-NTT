@@ -1,6 +1,8 @@
 import { header } from "./components/header.js";
 import { getProducts } from "./services/productsApi.js";
 import { getCategories } from "./services/categoriesApi.js";
+import { handlerSearch } from "./utils/search.js";
+import { handlerCategories } from "./utils/category.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   header();
@@ -13,6 +15,8 @@ const products = async () => {
   try {
     const dataProduct = await getProducts();
     renderProducts(dataProduct.products);
+    handlerSearch(dataProduct.products, renderProducts);
+    handlerCategories(dataProduct.products, renderProducts);
   } catch (error) {
     console.error(error);
   }
@@ -24,6 +28,15 @@ const renderProducts = (products) => {
   while (productsContainer.firstChild) {
     productsContainer.removeChild(productsContainer.firstChild);
   }
+
+   // Mostrar mensaje cuando no hay productos
+   if (products.length === 0) {
+    const noProductsMessage = document.createElement("h3");
+    noProductsMessage.classList.add("empty__message");
+    noProductsMessage.textContent = "No hay productos disponibles en esta categoría.";
+    productsContainer.appendChild(noProductsMessage);
+  }
+
   const convertToProductInterface = (product) => ({
     nameProduct: product.title,
     descriptionProduct: product.description,
