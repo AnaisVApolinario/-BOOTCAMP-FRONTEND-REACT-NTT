@@ -16,7 +16,7 @@ La estructura de carpetas del proyecto es la siguiente:
 - **/src/styles**: Contiene los archivos de estilos.
 - **/assets/images**: Imágenes utilizadas en el proyecto.
 - **/src/app**: Contiene los archivos con extension ".ts".
-- **/src/app/interface**:Contiene las interfaces que definidas tanto para categoria como para producto .
+- **/src/app/interface**: Contiene las interfaces definidas tanto para categoria como para producto .
 - **/src/app/services**: Lógica relacionada con la interacción de la API.
 - **/src/app/utils**: Funciones auxiliares para el manejo del filtrado.
 
