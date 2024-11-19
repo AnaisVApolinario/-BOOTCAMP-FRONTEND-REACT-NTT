@@ -13,10 +13,11 @@ Este proyecto ha sido desarrollado utilizando un enfoque **Mobile-First**. Esto 
 - **HTML5**: Estructura de la página.
 - **CSS3**: Estilización con enfoque en diseño responsivo.
 - **Flexbox** y **Grid Layout**: Técnicas de diseño utilizadas para la organización y disposición de los elementos en la página.
+- Typescript:
 - **Figma**: El prototipo del sitio fue diseñado en Figma, permitiendo un visualización clara del diseño antes de la implementación. [Enlace al prototipo en Figma](https://www.figma.com/proto/jHOwHMlXLo6HzBDMYVFUI7/Tienda-NttData?node-id=1-4&node-type=frame&t=yKJcyhfEGu9d0iup-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4)
 
 ### Estructura de carpetas
-- **/styles**: Archivos de estilos CSS.
-- **/img**: Imágenes utilizadas en el proyecto.
-- **/img/iconos**: Iconos utilizados en el proyecto.
+- **/src/styles**: Carpeta contenedora de archivos de estilos CSS.
+- **/assets/images**: Imágenes utilizadas en el proyecto.
+- **/src/app**: Carpeta contenedora de archivos con extension ".ts".
 
