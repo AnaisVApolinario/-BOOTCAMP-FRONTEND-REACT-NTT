@@ -1,8 +1,8 @@
 import { apiService } from "./apiService.ts";
-import {CategoryI} from "../interface/categoryInterface.ts"
+import {CategoryResponse} from "../interface/categoryInterface.ts"
 
 const BASE_URL = "https://dummyjson.com";
 
-export const getCategories = async (): Promise<CategoryI[]> => {
-  return await apiService<CategoryI[]>(`${BASE_URL}/products/categories`);
+export const getCategories = async (): Promise<CategoryResponse[]> => {
+  return await apiService<CategoryResponse[]>(`${BASE_URL}/products/categories`);
 };

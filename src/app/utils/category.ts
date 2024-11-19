@@ -1,8 +1,8 @@
-import { ProductI } from "../interface/productInterface";
+import { Product } from "../interface/productInterface";
 
 export const handlerCategories=( 
-  listProducts: ProductI[], 
-  renderElement: (products: ProductI[]) => void
+  listProducts: Product[], 
+  renderElement: (products: Product[]) => void
 ):void =>{
 
     const categoryLink = document.querySelectorAll<HTMLAnchorElement>(".nav__submenu-link");

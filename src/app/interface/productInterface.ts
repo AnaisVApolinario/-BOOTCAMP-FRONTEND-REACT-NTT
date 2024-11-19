@@ -1,4 +1,8 @@
 export interface ProductI {
+  products: ProductsResponse[];
+  // otras propiedades que pueda incluir la respuesta
+}
+interface ProductsResponse {
   id:                   number;
   title:                string;
   description:          string;
@@ -43,3 +47,21 @@ interface Review {
   reviewerName:  string;
   reviewerEmail: string;
 }
+/*Mapper */
+export interface Product {
+  nameProduct: string,
+  descriptionProduct: string,
+  descriptionBrand: string,
+  priceProduct: number,
+  imageProduct: string,
+  category:string
+}
+
+export const mapperApiProduct = (apiProduct: ProductsResponse): Product => ({
+  nameProduct: apiProduct.title,
+  descriptionProduct: apiProduct.description,
+  descriptionBrand: apiProduct.brand,
+  priceProduct: apiProduct.price,
+  imageProduct: apiProduct.thumbnail,
+  category: apiProduct.category
+});

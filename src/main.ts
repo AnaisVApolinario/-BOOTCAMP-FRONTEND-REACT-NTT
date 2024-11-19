@@ -3,6 +3,8 @@ import { getProducts } from "./app/services/productsApi.ts";
 import { getCategories } from "./app/services/categoriesApi.ts";
 import { handlerSearch } from "./app/utils/search.ts";
 import { handlerCategories } from "./app/utils/category.ts";
+import { mapperApiProduct, Product} from "./app/interface/productInterface.ts"
+import { mapperApiCategory, Category } from "./app/interface/categoryInterface.ts";
 
 document.addEventListener("DOMContentLoaded", () => {
   header();
@@ -11,50 +13,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Products
-const products = async () => {
+const products = async (): Promise<void>  => {
   try {
     const dataProduct = await getProducts();
-    renderProducts(dataProduct.products);
-    handlerSearch(dataProduct.products, renderProducts);
-    handlerCategories(dataProduct.products, renderProducts);
+    const mapperProducts = dataProduct.products.map(mapperApiProduct);
+    renderProducts(mapperProducts);
+    handlerSearch(mapperProducts, renderProducts);
+    handlerCategories(mapperProducts, renderProducts);
   } catch (error) {
     console.error(error);
   }
 };
 
-const renderProducts = (products) => {
-  const productsContainer = document.querySelector(".products");
+const renderProducts = (mapperProducts:Product[]): void => {
+  const productsContainer = document.querySelector(".products") as HTMLDivElement;
 
   while (productsContainer.firstChild) {
     productsContainer.removeChild(productsContainer.firstChild);
   }
-
    // Mostrar mensaje cuando no hay productos
-   if (products.length === 0) {
-    const noProductsMessage = document.createElement("h3");
+   if (mapperProducts.length === 0) {
+    const noProductsMessage = document.createElement("h3") as HTMLHeadingElement;
     noProductsMessage.classList.add("empty__message");
     noProductsMessage.textContent = "No hay productos disponibles en esta categoría.";
     productsContainer.appendChild(noProductsMessage);
   }
 
-  const convertToProductInterface = (product) => ({
-    nameProduct: product.title,
-    descriptionProduct: product.description,
-    descriptionBrand: product.brand,
-    priceProduct: product.price,
-    imageProduct: product.thumbnail,
-  });
 
-  products.forEach((product) => {
-    const productInterface = convertToProductInterface(product);
-    const {
-      nameProduct,
-      descriptionProduct,
-      descriptionBrand,
-      priceProduct,
-      imageProduct,
-    } = productInterface;
-
+  mapperProducts.forEach((product) => {
     //Agrego el contenedor y le agrego su estilo.
     const productElement = document.createElement("div");
     productElement.classList.add("product");
@@ -66,8 +52,8 @@ const renderProducts = (products) => {
     const productImage = document.createElement("div");
     productImage.classList.add("product__image");
     const img = document.createElement("img");
-    img.src = imageProduct;
-    img.alt = nameProduct;
+    img.src = product.imageProduct;
+    img.alt = product.nameProduct;
     productImage.appendChild(img);
 
     const productInfo = document.createElement("div");
@@ -75,15 +61,15 @@ const renderProducts = (products) => {
 
     const name = document.createElement("p");
     name.classList.add("product__name");
-    name.textContent = nameProduct;
+    name.textContent = product.nameProduct;
 
     const description = document.createElement("p");
     description.classList.add("product__description");
-    description.textContent = descriptionProduct;
+    description.textContent = product.descriptionProduct;
 
     const weight = document.createElement("p");
     weight.classList.add("product__weight");
-    weight.textContent = descriptionBrand ? `Marca: ${descriptionBrand}` : "";
+    weight.textContent = product.descriptionBrand ? `Marca: ${product.descriptionBrand}` : "";
 
     // Añado los elementos
     productInfo.appendChild(name);
@@ -100,35 +86,35 @@ const renderProducts = (products) => {
 
     const price = document.createElement("p");
     price.classList.add("product__price");
-    price.textContent = `S/.${priceProduct}`;
+    price.textContent = `S/.${product.priceProduct}`;
 
     // Agrego el contenedor de la cantidad
     const productQuantity = document.createElement("div");
     productQuantity.classList.add("product__quantity");
 
-    const quantityValue = document.createElement("p");
+    const quantityValue = document.createElement("p") as HTMLParagraphElement;
     quantityValue.classList.add("product__quantity-value");
     quantityValue.textContent = "1";
 
-    const decreaseButton = document.createElement("button");
+    const decreaseButton = document.createElement("button") as HTMLButtonElement;
     decreaseButton.classList.add("product__quantity-button");
     decreaseButton.textContent = "-";
 
-    const increaseButton = document.createElement("button");
+    const increaseButton = document.createElement("button") as HTMLButtonElement;
     increaseButton.classList.add("product__quantity-button");
     increaseButton.textContent = "+";
 
     // Agrego interactividad a los botones de cantidad
     decreaseButton.addEventListener("click", () => {
-      let quantity = parseInt(quantityValue.textContent, 10);
+      let quantity = parseInt(quantityValue.textContent || "0", 10);
       if (quantity > 1) {
-        quantityValue.textContent = quantity - 1;
+        quantityValue.textContent = (quantity - 1).toString(); // convierto el número a string;
       }
     });
 
     increaseButton.addEventListener("click", () => {
-      let quantity = parseInt(quantityValue.textContent, 10);
-      quantityValue.textContent = quantity + 1;
+      let quantity = parseInt(quantityValue.textContent || "0", 10);
+      quantityValue.textContent = (quantity + 1).toString(); // convierto el número a string;
     });
 
     // Añado botones y cantidad al contenedor de cantidad
@@ -142,9 +128,10 @@ const renderProducts = (products) => {
 
     // Añado eventos al botón agregar al carrito
     addButton.addEventListener("click", () => {
-      const cartIcon = document.querySelector(".bx-cart span");
-      let count = parseInt(cartIcon.textContent, 10) || 0;
-      cartIcon.textContent = count + parseInt(quantityValue.textContent, 10);
+      const cartIcon = document.querySelector(".bx-cart span") as HTMLSpanElement;
+      let count = parseInt(cartIcon.textContent || "0", 10); // valor numérico inicial
+      let quantity = parseInt(quantityValue.textContent || "0", 10); // quantityValue también CON VALOR NUMERICO
+      cartIcon.textContent = (count + quantity).toString();
     });
 
     // Añado elementos a productBottom
@@ -164,14 +151,15 @@ const renderProducts = (products) => {
 const categories = async () => {
   try {
     const dataCategory = await getCategories();
-    renderCategories(dataCategory);
+    const mapperCategory = dataCategory.map(mapperApiCategory);
+    renderCategories(mapperCategory);
   } catch (error) {
     console.error(error);
   }
 };
 
-const renderCategories = (categories) => {
-  const categoriesDropdown = document.querySelector(".nav__submenu");
+const renderCategories = (categories:Category[]) => {
+  const categoriesDropdown = document.querySelector(".nav__submenu") as HTMLUListElement;
   while (categoriesDropdown.firstChild) {
     categoriesDropdown.removeChild(categoriesDropdown.firstChild);
   }
@@ -182,7 +170,7 @@ const renderCategories = (categories) => {
     const categoryLink = document.createElement("a");
     // categoryLink.href = "#"; 
     categoryLink.classList.add("nav__submenu-link");
-    categoryLink.textContent = category.name; 
+    categoryLink.textContent = category.nameCategory; 
 
     listItem.appendChild(categoryLink);
     categoriesDropdown.appendChild(listItem);
