@@ -1,4 +1,4 @@
-export const apiService = async (url) => {
+export const apiService = async <T>(url: string): Promise<T>   => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -6,6 +6,6 @@ export const apiService = async (url) => {
     }
     return await response.json();
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };

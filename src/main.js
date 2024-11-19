@@ -1,8 +1,8 @@
-import { header } from "./app/components/header.js";
-import { getProducts } from "./app/services/productsApi.js";
-import { getCategories } from "./app/services/categoriesApi.js";
-import { handlerSearch } from "./app/utils/search.js";
-import { handlerCategories } from "./app/utils/category.js";
+import { header } from "./app/components/header.ts";
+import { getProducts } from "./app/services/productsApi.ts";
+import { getCategories } from "./app/services/categoriesApi.ts";
+import { handlerSearch } from "./app/utils/search.ts";
+import { handlerCategories } from "./app/utils/category.ts";
 
 document.addEventListener("DOMContentLoaded", () => {
   header();

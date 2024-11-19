@@ -1,13 +1,13 @@
 
-export function header(){
-  const navbar = document.querySelector(".nav");
-  const body = document.body;
-  const overlay = document.querySelector(".overlay");
-  const menuIcon = document.querySelector("#menu-icon");
-  const dropdown = document.querySelector(".nav__item--dropdown");
-  const subMenu = document.querySelector(".nav__submenu");
-  const search = document.querySelector(".search__box");
-  const searchIcon = document.querySelector("#search-icon");
+export function header():void{
+  const navbar = document.querySelector(".nav") as HTMLDivElement;
+  const body = document.body as HTMLBodyElement;
+  const overlay = document.querySelector(".overlay") as HTMLDivElement;
+  const menuIcon = document.querySelector("#menu-icon") as HTMLElement;
+  const dropdown = document.querySelector(".nav__item--dropdown") as HTMLLIElement;
+  const subMenu = document.querySelector(".nav__submenu") as HTMLUListElement;
+  const search = document.querySelector(".search__box") as HTMLDivElement;
+  const searchIcon = document.querySelector("#search-icon") as HTMLElement;
 
   menuIcon.addEventListener("click", () => {
     navbar.classList.toggle("active");
