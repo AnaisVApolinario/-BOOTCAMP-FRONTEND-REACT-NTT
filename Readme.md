@@ -13,11 +13,10 @@ Este proyecto ha sido desarrollado utilizando un enfoque **Mobile-First**. Esto 
 - **HTML5**: Estructura de la página.
 - **CSS3**: Estilización con enfoque en diseño responsivo.
 - **Flexbox** y **Grid Layout**: Técnicas de diseño utilizadas para la organización y disposición de los elementos en la página.
-- Typescript:
-- **Figma**: El prototipo del sitio fue diseñado en Figma, permitiendo un visualización clara del diseño antes de la implementación. [Enlace al prototipo en Figma](https://www.figma.com/proto/jHOwHMlXLo6HzBDMYVFUI7/Tienda-NttData?node-id=1-4&node-type=frame&t=yKJcyhfEGu9d0iup-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4)
+- **Typescript**: Para añadir tipado estático y mejorar la mantenibilidad del código JavaScript.
 
-### Estructura de carpetas
-- **/src/styles**: Carpeta contenedora de archivos de estilos CSS.
-- **/assets/images**: Imágenes utilizadas en el proyecto.
-- **/src/app**: Carpeta contenedora de archivos con extension ".ts".
+## 📁 Estructura de Carpetas
+La estructura de carpetas del proyecto es la siguiente:
+/src │ ├── /app │ ├── /components # Componentes reutilizables de la aplicación │ ├── /interfaces # Interfaces para el tipado en TypeScript │ ├── /services # Lógica para la interacción con servicios y API │ └── /utils # Funciones auxiliares o utilidades comunes │ ├── /assets │ └── /images # Imágenes utilizadas en el proyecto │ └── /styles # Archivos CSS para los estilos de la aplicación
+
 
