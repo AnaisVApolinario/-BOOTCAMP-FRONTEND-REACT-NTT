@@ -2,6 +2,7 @@ export const handlerSearch = (listProducts, renderElement) => {
   const searchInput = document.querySelector("#search-input");
   searchInput.addEventListener("input", (text) => {
     const searchText = text.target.value.toLowerCase();
+    // esto solo buscar'a si el texto empieza con lo que se esta solicitado, tal vez podr'ias usar un include
     const filteredProducts = listProducts.filter((product) =>
       product.title.toLowerCase().startsWith(searchText)
     );

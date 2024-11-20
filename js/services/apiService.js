@@ -1,3 +1,4 @@
+// esto podr'ia estar en una carpeta shared/helpers 
 export const apiService = async (url) => {
   try {
     const response = await fetch(url);

@@ -180,6 +180,7 @@ const renderCategories = (categories) => {
     const listItem = document.createElement("li");
 
     const categoryLink = document.createElement("a");
+    // eliminar comentarios de c'odigo no usado
     // categoryLink.href = "#"; 
     categoryLink.classList.add("nav__submenu-link");
     categoryLink.textContent = category.name; 
