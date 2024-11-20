@@ -1,3 +1,4 @@
+// se puede mover a shared/helpers
 export const apiService = async <T>(url: string): Promise<T>   => {
   try {
     const response = await fetch(url);

@@ -1,7 +1,8 @@
 export interface ProductI {
   products: ProductsResponse[];
-  // otras propiedades que pueda incluir la respuesta
 }
+
+// en singular ya que la interfaz represente a un elemento
 interface ProductsResponse {
   id:                   number;
   title:                string;
@@ -57,6 +58,7 @@ export interface Product {
   category:string
 }
 
+// esto deber'ia estar en otra carpeta llamado mappers
 export const mapperApiProduct = (apiProduct: ProductsResponse): Product => ({
   nameProduct: apiProduct.title,
   descriptionProduct: apiProduct.description,

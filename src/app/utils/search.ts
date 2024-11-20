@@ -9,7 +9,6 @@ export const handlerSearch = (
   ) as HTMLInputElement;
   searchInput.addEventListener("input", (text) => {
     const searchText = text.target as HTMLInputElement;
-    console.log(listProducts)
     const filteredProducts = listProducts.filter((product) =>
       product.nameProduct.toLowerCase().startsWith(searchText.value.toLowerCase())
   );
