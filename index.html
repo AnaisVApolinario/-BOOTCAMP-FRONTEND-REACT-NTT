@@ -1,115 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TAM</title>
-    <link rel="icon" href="assets/images/favicon.png" type="image/png" />
-    <link rel="stylesheet" href="src/style.css" />
+    <link rel="icon" href="./src/assets/favicon.png" type="image/png" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
   </head>
   <body>
-    <header class="header">
-      <!-- Menu Icon -->
-      <i
-        class="header__menu bx bx-menu"
-        id="menu-icon"
-        style="color: #ffffff"
-      ></i>
-      <!-- Logo -->
-      <a href="#" class="header__logo">
-        <img
-          src="assets/images/logo.png"
-          alt="Logo de TAM"
-          class="header__logo-img"
-        />
-      </a>
-      <!-- Nav List -->
-      <nav class="nav">
-        <ul class="nav__list">
-          <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
-          <li class="nav__item nav__item--dropdown">
-            <a href="#" class="nav__link nav__link--dropdown">Categorias</a>
-            <ul class="nav__submenu">
-              <li><a href="#" class="nav__submenu-link">Pages</a></li>
-              <li><a href="#" class="nav__submenu-link">Elements</a></li>
-              <li><a href="#" class="nav__submenu-link">Icons</a></li>
-            </ul>
-          </li>
-          <li class="nav__item">
-            <a href="#support" class="nav__link">Soporte</a>
-          </li>
-        </ul>
-      </nav>
-      <!-- Right Icons -->
-      <div class="header__icons">
-        <i class="bx bx-search" id="search-icon" style="color: #ffffff"></i>
-        <i class="bx bx-cart" style="color: #ffffff">
-          <span>0</span>
-        </i>
-      </div>
-
-      <!-- Search box -->
-      <div class="search__box">
-        <input type="search" name="" id="search-input" placeholder="Buscar..." />
-      </div>
-    </header>
-    <!-- Overlay (invisible por defecto) -->
-    <div class="overlay"></div>
-    <main>
-      <!-- Banner -->
-      <div class="banner">
-        <div class="banner__text">
-          <h1>TODO LO QUE NECESITAS</h1>
-          <h2>EN UN SOLO LUGAR</h2>
-        </div>
-        <div class="banner__img">
-          <img src="/assets/images/banner.png" alt="Banner" />
-        </div>
-      </div>
-      <!-- Products -->
-      <h2 class="products__title">Productos</h2>
-      <section class="products">
-      </section>
-
-    </main>
-    <footer class="footer">
-      <div class="footer__contact">
-        <h2 class="footer__title">Contacto</h2>
-        <p class="footer__item">
-          <i class="bx bxs-map"></i> Dirección: Calle Rosas 123, Lima, Perú
-        </p>
-        <p class="footer__item">
-          <i class="bx bxs-phone"></i> Teléfono: +51 956 789 245
-        </p>
-        <p class="footer__item">
-          <i class="bx bxs-envelope"></i> Correo: tam@gamil.com
-        </p>
-      </div>
-
-      <div class="footer__newsletter">
-        <h2 class="footer__title">Suscríbete</h2>
-        <p class="footer__description">
-          Recibe actualizaciones, accede a ofertas exclusivas y más.
-        </p>
-        <div class="footer__newsletter-input">
-          <input
-            class="footer__input"
-            type="email"
-            placeholder="Ingresa tu correo"
-            required
-          />
-          <button class="footer__button" type="submit">Enviar</button>
-        </div>
-      </div>
-
-      <p class="footer__copyright">
-        © 2024 TAM. Todos los derechos reservados.
-      </p>
-    </footer>
-    <script type="module" src="src/main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

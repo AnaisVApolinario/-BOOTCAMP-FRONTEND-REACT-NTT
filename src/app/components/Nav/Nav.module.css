@@ -1,0 +1,50 @@
+.nav__header{
+  display: flex;
+  justify-content: space-between;
+  background: var(--primary-color);
+  padding: 1rem 1.5rem;
+}
+
+.nav {
+  display: none;  
+  background-color: var(--bg-color);
+  width: 250px;  
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh; 
+  transition: left 0.3s ease; 
+  z-index: 1000;
+  overflow-y: auto;
+  /* padding: 2rem; */
+}
+.nav__list {
+  display: flex;
+  gap: 2.5rem;
+  padding: 1.5rem;
+  flex-direction: column;
+  /* list-style: none; */
+  margin: 0;
+}
+.active {
+  display: block;
+}
+@media (min-width: 768px) {
+  .nav{
+    display: flex;
+    background-color: transparent;
+    position: static;
+    width: auto;
+    height: unset; 
+    transition: none;
+    z-index: auto; 
+    padding: 0;
+    overflow: hidden;
+  }
+  .nav__list {
+    flex-direction: row;
+    gap: 3rem;
+    padding:0;
+  }
+
+}

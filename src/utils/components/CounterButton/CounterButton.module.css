@@ -1,0 +1,11 @@
+
+.product__quantity-button {
+  background-color: var(--primary-color); 
+  color: var(--bg-color);
+  border: none;
+  border-radius: 50%; 
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
+}
