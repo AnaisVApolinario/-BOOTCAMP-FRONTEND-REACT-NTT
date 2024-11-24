@@ -1,21 +1,19 @@
 import React from 'react'
 import { CounterButton } from '../../../utils/components/CounterButton/CounterButton';
 import styles from './ProductQuantity.module.css';
-// interface IProductQuantity {
-//   // handleAddToCart: (quantity: number) => void;
-// }
-// ProductQuantity.jsx
-const ProductQuantity = () => {
-  const [quantity, setQuantity] = React.useState(1);
-
+interface IProductQuantity {
+  quantity: number;
+  onQuantityChange: (quantity: number) => void;
+}
+const ProductQuantity:React.FC<IProductQuantity>= ({quantity,onQuantityChange}) => {
   const increase = () => {
     const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
+    onQuantityChange(newQuantity);
       };
   const decrease = () => {
     if (quantity > 1) {
       const newQuantity = quantity - 1;
-      setQuantity(newQuantity);
+      onQuantityChange(newQuantity);
     }
   };
 

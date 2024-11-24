@@ -1,8 +1,11 @@
+import React from 'react';
 import footerStyles from './Footer.module.css'; 
-
-const Footer = () => {
+interface IFooter {
+  isFooterEmpty: boolean;
+}
+const Footer:React.FC<IFooter> = ({isFooterEmpty})=> {
   return (
-    <footer className={footerStyles.footer}>
+    <footer className={`${footerStyles.footer} ${isFooterEmpty ? footerStyles.no__content : ''}`}>
       <div className={footerStyles.footer__contact}>
         <h2 className={footerStyles.footer__title}>Contacto</h2>
         <p className={footerStyles.footer__item}>

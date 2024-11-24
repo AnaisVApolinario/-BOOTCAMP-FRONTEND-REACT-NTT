@@ -5,20 +5,20 @@ import Card from "../Card/Card";
 import IProducts from "../../domain/IProducts";
 interface IProductList{
   category:string,
-  handleAddToCart:(quanty:number)=>void
+  handleCartQuantity:(quanty:number)=>void
+  searchQuery?: string;
+  onEmptyProducts: (isEmpty: boolean) => void;
 }
-const ProductList:React.FC<IProductList> = ({category, handleAddToCart}) => {
-  // Estado para los productos
+const ProductList:React.FC<IProductList> = ({category, handleCartQuantity, searchQuery, onEmptyProducts}) => {
   const [products, setProducts] = useState<IProducts[]>([]);
-  // const [error, setError] = useState(null); // Estado para manejar errores
-  const [filteredProducts, setFilteredProducts] = useState<IProducts[]>([]); // Estado para productos filtrados
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [filteredProducts, setFilteredProducts] = useState<IProducts[]>([]);
+  const [loading, setLoading] = useState(true); 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const data = await apiService.getProducts();
         setProducts(data.products);
-        setFilteredProducts(data.products); // Inicialmente muestra todos los productos
+        setFilteredProducts(data.products);
         setLoading(false);
       } catch (err) {
         throw new Error("Error al obtener los productos");
@@ -28,15 +28,20 @@ const ProductList:React.FC<IProductList> = ({category, handleAddToCart}) => {
   }, []);
 
   useEffect(() => {
+    let filtered= products;
     if (category) {
-      const filtered = products.filter(
+      filtered = filtered.filter(
         (product) => product.category === category.toLowerCase()
       );
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts(products);
     }
-  }, [category, products]);
+    if (searchQuery) {
+      filtered = filtered.filter((product) =>
+       product.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+     );
+   }
+   setFilteredProducts(filtered);
+   onEmptyProducts(filtered.length === 0);
+  }, [category, products, searchQuery, onEmptyProducts]);
 
   // Renderizar mientras se cargan los datos
   if (loading) {
@@ -55,7 +60,7 @@ const ProductList:React.FC<IProductList> = ({category, handleAddToCart}) => {
           title={product.title}
           description={product.description}
           category={product.category}
-          handleAddToCart={handleAddToCart}
+          handleCartQuantity={handleCartQuantity}
         />
       ))}
     </section>

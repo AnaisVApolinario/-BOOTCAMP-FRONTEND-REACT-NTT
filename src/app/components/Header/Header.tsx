@@ -9,11 +9,10 @@ import SearchBoxM from "../../../utils/components/SearchBox/SearchBoxM";
 interface IHeader{
   onCategoryChange: (category: string) => void;
   cartQuantity: number;
+  onSearchChange: (search: string) => void;
 }
-const Header:React.FC<IHeader> = ({onCategoryChange, cartQuantity}) => {
-  // Estados locales para manejar la lógica de los eventos
+const Header:React.FC<IHeader> = ({onCategoryChange, cartQuantity, onSearchChange}) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   // Función para alternar el menú
@@ -26,12 +25,7 @@ const Header:React.FC<IHeader> = ({onCategoryChange, cartQuantity}) => {
     setIsMenuActive(false);
   };
 
-  // Función para alternar el dropdown
-  // const toggleDropdown = () => {
-  //   setIsDropdownOpen(!isDropdownOpen);
-  //   setIsSearchActive(false); // Cierra el buscador si el dropdown se abre
-  // };
-
+ 
   // Función para eventos click en los iconos del componente HeaderRightIcons
   const handleUserClick = () => {
     console.log("User icon clicked");
@@ -71,7 +65,7 @@ const Header:React.FC<IHeader> = ({onCategoryChange, cartQuantity}) => {
         <HeaderRightIcons events={eventHandlers} cartQuantity={cartQuantity} />
 
         {/* Caja de búsqueda */}
-        <SearchBoxM isSearchActive={isSearchActive} />
+        <SearchBoxM isSearchActive={isSearchActive} onSearchChange={onSearchChange}/>
       </header>
       {/* Overlay (invisible por defecto) */}
       <div

@@ -19,13 +19,4 @@ export const apiService = {
       console.error(error);
     }
   }
-  // getProduct: async (id: string) => {
-  //   try {
-  //     const response = await fetch(`${BASE_URL}/products/${id}`);
-  //     if (!response.ok) throw new Error("Error al obtener el producto");
-  //     return await response.json();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
 };

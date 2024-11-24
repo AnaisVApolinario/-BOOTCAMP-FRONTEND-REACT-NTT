@@ -3,16 +3,15 @@ import { DropdownList } from "../../../utils/components/DropdownList/DropdownLis
 import { useState } from 'react';
 
 interface INavItem {
-  name: string; // Texto del enlace principal
-  link: string; // Enlace del ítem principal
-  // isDropdown?: boolean; // Si tiene un dropdown
-  categories?: { name: string }[]; // Categorías para el dropdown
+  name: string; 
+  link: string; 
+  categories?: { name: string }[]; 
   onCategoryChange?: (category: string) => void;
 }
 
 export const NavItem: React.FC<INavItem> = ({ name, link, categories, onCategoryChange }) => {
   const [isSubmenuActive, setSubmenuActive] = useState(false);
-  // Función para manejar el clic en el elemento <li> 
+ 
   const handleItemClick = () => { 
     setSubmenuActive(!isSubmenuActive); 
   };
