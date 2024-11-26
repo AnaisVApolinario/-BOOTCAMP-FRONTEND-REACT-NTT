@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1,
+    "name": "Ancón"
+  },
+  {
+    "id": 2,
+    "name": "Carabayllo"
+  },
+  {
+    "id": 3,
+    "name": "Comas"
+  },
+  {
+    "id": 4,
+    "name": "Independencia"
+  },
+  {
+    "id": 5,
+    "name": "Los Olivos"
+  },
+  {
+    "id": 6,
+    "name": "Puente Piedra"
+  },
+  {
+    "id": 7,
+    "name": "San Martín de Porres"
+  },
+  {
+    "id": 8,
+    "name": "Santa Rosa"
+  },
+  {
+    "id": 9,
+    "name": "Barranco"
+  },
+  {
+    "id": 10,
+    "name": "Breña"
+  },
+  {
+    "id": 11,
+    "name": "Jesús María"
+  },
+  {
+    "id": 12,
+    "name": "La Victoria"
+  },
+  {
+    "id": 13,
+    "name": "Lima"
+  },
+  {
+    "id": 14,
+    "name": "Lince"
+  },
+  {
+    "id": 15,
+    "name": "Magdalena del Mar"
+  },
+  {
+    "id": 16,
+    "name": "Miraflores"
+  },
+  {
+    "id": 17,
+    "name": "Pueblo Libre"
+  },
+  {
+    "id": 18,
+    "name": "Rímac"
+  },
+  {
+    "id": 19,
+    "name": "San Borja"
+  },
+  {
+    "id": 20,
+    "name": "San Isidro"
+  },
+  {
+    "id": 21,
+    "name": "San Miguel"
+  },
+  {
+    "id": 22,
+    "name": "Santiago de Surco"
+  },
+  {
+    "id": 23,
+    "name": "Surquillo"
+  },
+  {
+    "id": 24,
+    "name": "Ate"
+  },
+  {
+    "id": 25,
+    "name": "Chaclacayo"
+  },
+  {
+    "id": 26,
+    "name": "Cieneguilla"
+  },
+  {
+    "id": 27,
+    "name": "El Agustino"
+  },
+  {
+    "id": 28,
+    "name": "Huaycán (Comunidad)"
+  },
+  {
+    "id": 29,
+    "name": "La Molina"
+  },
+  {
+    "id": 30,
+    "name": "Lurigancho"
+  },
+  {
+    "id": 31,
+    "name": "San Juan de Lurigancho"
+  },
+  {
+    "id": 32,
+    "name": "San Luis"
+  },
+  {
+    "id": 33,
+    "name": "Santa Anita"
+  },
+  {
+    "id": 34,
+    "name": "Chorrillos"
+  },
+  {
+    "id": 35,
+    "name": "Lurín"
+  },
+  {
+    "id": 36,
+    "name": "Pachacamac"
+  },
+  {
+    "id": 37,
+    "name": "Pucusana"
+  },
+  {
+    "id": 38,
+    "name": "Punta Hermosa"
+  },
+  {
+    "id": 39,
+    "name": "Punta Negra"
+  },
+  {
+    "id": 40,
+    "name": "San Bartolo"
+  },
+  {
+    "id": 41,
+    "name": "San Juan de Miraflores"
+  },
+  {
+    "id": 42,
+    "name": "Santa María del Mar"
+  },
+  {
+    "id": 43,
+    "name": "Villa El Salvador"
+  },
+  {
+    "id": 44,
+    "name": "Villa María del Triunfo"
+  }
+]

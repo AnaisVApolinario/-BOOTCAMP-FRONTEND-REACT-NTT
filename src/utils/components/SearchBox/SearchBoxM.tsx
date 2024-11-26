@@ -1,18 +1,21 @@
-import React from "react";
+
 import styles from "./SearchBox.module.css";
+import { useSearchContext } from '../../../context/searchContext';
 interface ISearchBox{
   isSearchActive:boolean;
   onSearchChange?:(name:string)=>void;
 }
-const SearchBoxM:React.FC<ISearchBox> = ({isSearchActive, onSearchChange}) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (onSearchChange) {
-      onSearchChange(event.target.value);
-    }
+const SearchBoxM:React.FC<ISearchBox> = ({isSearchActive}) => {
+  
+  const { setSearchQuery } = useSearchContext();
+  
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
   };
+
   return (
     <div className={`${styles.search__box} ${isSearchActive? styles.active__input:""}`}>
-      <input type="search" id="search-input" placeholder="Buscar..." onChange={handleChange} />
+      <input type="search" placeholder="Buscar..." onChange={handleSearchChange} />
     </div>
   );
 };

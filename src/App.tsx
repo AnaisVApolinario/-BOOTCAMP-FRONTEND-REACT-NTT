@@ -1,50 +1,37 @@
-import { useState } from 'react'
-import './App.css'
-import Banner from './app/components/Banner/Banner'
-import Header from './app/components/Header/Header'
-import ProductList from './app/components/ProductList/ProductList'
-import Footer from './app/components/Footer/Footer'
-
+// import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import HomePage from "./pages/Home/HomePage";
+import CartPage from "./pages/Cart/CartPage";
+import { SearchProvider } from "./context/searchContext";
+import { CartProvider } from "./context/CartContext";
+import { CategoryProvider } from "./context/CategoryContext";
+import { VisibilityProvider } from "./context/VisibilityContext";
+import NotFound from "./pages/NotFound/NotFound";
+import MainLayout from "./utils/layout/MainLayout";
+import EnvioPage from "./pages/Envio/EnvioPage";
 
 function App() {
-  const [cartQuantity, setCartQuantity] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [isBannerVisible, setIsBannerVisible] = useState<boolean>(true);  
-  const [isFooterEmpty, setIsFooterEmpty] = useState(false);
-
-  const handleSearchQueryChange = (query: string) => {
-    setSearchQuery(query); 
-  };
-  const handleCartQuantity = (quantity: number) => {
-    setCartQuantity(eQuantity => eQuantity + quantity); 
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category);
-     // Ocultar el banner cuando se seleccione una categoría
-     if (category !== '') {
-      setIsBannerVisible(false);
-    } else {
-      setIsBannerVisible(true);  // Mostrar el banner si no hay filtro
-    }
-  };
-  const handleEmptyProducts = (isEmpty: boolean) => {
-    setIsFooterEmpty(isEmpty); // Actualiza el estado según el número de productos
-  };
-
-
   return (
     <>
-      <Header onCategoryChange={handleCategoryChange}  cartQuantity={cartQuantity} onSearchChange={handleSearchQueryChange} />
-      {isBannerVisible && <Banner />}  {/* Solo renderiza el Banner si isBannerVisible es true */}
-      <ProductList category={selectedCategory} 
-       handleCartQuantity={handleCartQuantity}
-       searchQuery={searchQuery}
-       onEmptyProducts={handleEmptyProducts}  />
-      <Footer isFooterEmpty={isFooterEmpty} />
+      <VisibilityProvider>
+        <CartProvider>
+          <SearchProvider>
+            <CategoryProvider>
+              <Routes>
+                <Route path="/" element={<MainLayout />}>
+                  <Route index element={<HomePage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/form" element={<EnvioPage />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </CategoryProvider>
+          </SearchProvider>
+        </CartProvider>
+      </VisibilityProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

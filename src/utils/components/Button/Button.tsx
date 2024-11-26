@@ -1,7 +1,7 @@
 import styles from "./Button.module.css";
 interface IButton {
   name: string;
-  onClick: () => void;
+  onClick?: () => void;
   type?: "button" | "submit" | "reset"; // Definimos el tipo del botón
 }
 
