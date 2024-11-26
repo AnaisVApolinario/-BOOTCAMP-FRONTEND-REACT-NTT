@@ -15,6 +15,7 @@ const HeaderRightIcons: React.FC<IHeaderRightIcons> = ({events = {}}) => {
   return (
     <div className={styles.header__icons}>
       {/* Ícono de usuario solo para desktop */}
+      {/* no usemos palabras magicas usemos un enum */}
       {isDesktop && <Icon name="bx-user" onClick={events['user']} />}
       {/* Ícono de búsqueda */}
       <Icon name="bx-search" onClick={events['search']} />

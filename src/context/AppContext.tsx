@@ -16,6 +16,7 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  // se puede evitar todos los usestate usando useReducer ya que para valores complejos o valores con muchos datos el useReducer es el hook adecuado, esto debe cambiarse
   const [cartQuantity, setCartQuantity] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");

@@ -6,6 +6,7 @@ interface IDropdownList {
   isSubmenuActive: boolean;
 }
 
+// igual este componente al usar el drowndownitem est'a amarrado a usarse unicamente en market
 export const DropdownList: React.FC<IDropdownList> = ({isSubmenuActive}) => {
   const { categories } = useCategoryContext();
   return (

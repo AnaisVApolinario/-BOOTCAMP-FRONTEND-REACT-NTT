@@ -9,7 +9,6 @@ const CartProducts = () => {
     <div className={styles["carrito"]}>
       <h1 className={styles["carrito__titulo"]}>Carrito de Compras</h1>
       <div className={styles["carrito__contenedor"]}>
-        {/* Lista de productos */}
         <div className={styles["carrito__productos"]}>
         {cartItems.length > 0 ? (
             cartItems.map((item) => (
@@ -26,7 +25,6 @@ const CartProducts = () => {
             <h3>No hay productos en el carrito.</h3>
           )}
         </div>
-        {/* Resumen del pedido */}
         <div className={styles["carrito__resumen"]}>
          <ResumenM/>
         </div>

@@ -21,6 +21,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<MainLayout />}>
                   <Route index element={<HomePage />} />
+                  {/* usemos enum para evitar escribir directamente */}
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/form" element={<EnvioPage />} />
                 </Route>

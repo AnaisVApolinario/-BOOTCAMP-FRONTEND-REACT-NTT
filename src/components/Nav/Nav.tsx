@@ -27,6 +27,7 @@ const Nav: React.FC<INav> = ({ isMenuActive }) => {
   const isDesktop = !useIsDesktop();
   return (
     <nav className={`${styles.nav} ${isMenuActive ? styles.active : ""}`}>
+      {/* que es bx? */}
       { isDesktop &&    <div className={styles.nav__header}>
         <Icon name="bx-user" />
         <Icon name="bx-x" />
