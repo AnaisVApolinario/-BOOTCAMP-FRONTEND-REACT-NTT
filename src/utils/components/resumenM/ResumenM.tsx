@@ -6,9 +6,10 @@ const ResumenM = () => {
   const {getCartTotal}= useCartContext();
   const navigate = useNavigate();
   const handleNextPage = () => {
-    navigate('/form');
+    navigate('/form'); // usemos un enum para evitar equivocarnos al escribir
   }
   const cartSubTotal = getCartTotal();
+  // qu'e es 15?
   const cartTotal = getCartTotal() + 15;
   return (
    <>

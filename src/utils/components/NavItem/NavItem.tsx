@@ -13,7 +13,7 @@ interface INavItem {
 export const NavItem: React.FC<INavItem> = ({ name, path, isDropdown }) => {
   const {categories}=useCategoryContext();
   const [isSubmenuActive, setSubmenuActive] = useState(false);
-  // Función para manejar el clic en el elemento <li> 
+
   const handleItemClick = () => { 
     setSubmenuActive(!isSubmenuActive); 
   };

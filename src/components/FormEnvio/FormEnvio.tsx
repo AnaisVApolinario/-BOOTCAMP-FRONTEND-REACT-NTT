@@ -1,3 +1,4 @@
+// si dejo los nombres, apellidos y direccion con espacios en blanco igual registra
 import { useState } from "react";
 import styles from "./FormEnvio.module.css";
 import { Button } from "../../utils/components/Button/Button";
@@ -34,6 +35,7 @@ const FormEnvio = () => {
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
+      // usemos un enum para evitar escribir directamente el valor
       case "Nombre":
       case "Apellido":
         return validateText(value);

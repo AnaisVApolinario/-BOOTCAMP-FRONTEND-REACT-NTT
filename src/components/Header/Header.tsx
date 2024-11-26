@@ -9,30 +9,29 @@ import SearchBoxM from "../../utils/components/SearchBox/SearchBoxM";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header= () => {
-  // Estados locales para manejar la lógica de los eventos
   const [isMenuActive, setIsMenuActive] = useState(false);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const navigate = useNavigate();
 
-  // Función para alternar el menú
   const toggleMenu = () => {
     setIsMenuActive(!isMenuActive);
   };
 
-  // Función para cerrar el menú
   const closeMenu = () => {
     setIsMenuActive(false);
   };
 
 
-  // Función para eventos click en los iconos del componente HeaderRightIcons
   const handleUserClick = () => {
-    console.log("User icon clicked");
+    // cuando hay una funcionalidad pendiente es recomendable poner TODO
+    // TODO
   };
+
   const handleSearchClick = () => {
     setIsSearchActive(!isSearchActive);
   };
   const handleCartClick = () => {
+    // usemos un enum
     navigate("/cart"); 
   };
   const eventHandlers = {
@@ -41,6 +40,7 @@ const Header= () => {
     cart: handleCartClick,
   };
 
+  // por qu'e el hook est'a negado? el hook solo debe ejecutar y retornar un valor
   const isDesktop = !useIsDesktop();
   return (
     <>
@@ -66,8 +66,10 @@ const Header= () => {
         <SearchBoxM isSearchActive={isSearchActive} />
       </header>
       {/* Overlay (invisible por defecto) */}
+      {/* por accesibilidad si queremos que un div sea bot'on usemos role */}
       <div
         className={`${styles.overlay} ${isMenuActive ? styles.active : ""}`}
+        role="button"
         onClick={closeMenu}
       ></div>
     </>

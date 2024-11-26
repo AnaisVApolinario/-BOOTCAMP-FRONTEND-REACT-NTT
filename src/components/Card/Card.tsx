@@ -11,6 +11,7 @@ interface IProduct {
   category: string;
   price:number
 }
+// este card est'a creado solo para market no podr'ia ser reutilizable ya que tiene mucha l'ogica
 const Card: React.FC<IProduct> = ({
   id,
   img,
@@ -29,7 +30,7 @@ const Card: React.FC<IProduct> = ({
     }
   };
   const handleQuantityChange = (newQuantity: number) => {
-    setQuantity(newQuantity); // Actualiza la cantidad localmente
+    setQuantity(newQuantity);
   };
   return (
     <div className={styles.product}>
@@ -47,7 +48,7 @@ const Card: React.FC<IProduct> = ({
         <p className={styles.product__price}>${price}</p>
         <ProductQuantity quantity={quantity}
           onQuantityChange={handleQuantityChange} />
-        <Button name={"Agregar"} onClick={handleAddToCart} />
+        <Button name="Agregar" onClick={handleAddToCart} />
       </div>
     </div>
   );

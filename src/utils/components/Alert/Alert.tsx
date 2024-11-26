@@ -1,3 +1,4 @@
+// cual es la diferencia entre utils/components y la carpeta components?
 import styles from './Alert.module.css';
 interface IAlert {
   message: string;
@@ -14,7 +15,7 @@ const Alert: React.FC<IAlert> = ({ message, icon, title, onClose}) => {
         <h2 className={styles.alert__title}>{title}</h2>
         <p className={styles.alert__message}>{message}</p>
         <button className={styles.alert__button} onClick={onClose}>
-          Aceptar
+          Aceptar {/* este texto tambi'en podr'ia ser una prop */}
         </button>
       </div>
     </div>

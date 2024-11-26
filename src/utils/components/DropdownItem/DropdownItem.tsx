@@ -6,6 +6,7 @@ interface IDropdownItem{
   name: string;
 }
 
+// este componente es cross o solo para el proyecto?  ya que el nombre es general, sin embargo, su contenido est'a muy amarrado al proyecto market
 export const DropdownItem: React.FC<IDropdownItem> = ({ name}) => {
   const { setSelectedCategory } = useCategoryContext();
   const { setIsBannerVisible } = useVisibilityContext();
