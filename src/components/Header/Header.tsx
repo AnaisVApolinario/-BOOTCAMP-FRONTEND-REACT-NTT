@@ -1,74 +1,44 @@
 import styles from "./header.module.css";
-import logo from "../../assets/logo.png";
 import Nav from "../Nav/Nav";
-import { Icon } from "../../utils/components/Icon/Icon";
+import Icon  from "../Icon/Icon";
 import HeaderRightIcons from "../HeaderRightIcons/HeaderRightIcons";
-import { useState } from "react";
 import useIsDesktop from "../../hooks/useIsDesktop";
-import SearchBoxM from "../../utils/components/SearchBox/SearchBoxM";
-import { Link, useNavigate } from "react-router-dom";
+import SearchBoxM from "../SearchBox/SearchBoxM";
+import { Link } from "react-router-dom";
+import { ModuleRoutes } from "../../router/routes";
+import { IconName } from "../../domain/IconName";
+import { useIconEventHandle } from "../../hooks/useIconEventHandle";
+import { useMenuToggle } from "../../hooks/useMenuToggle";
+import Logo from "../Logo/Logo";
 
 const Header= () => {
-  // Estados locales para manejar la lógica de los eventos
-  const [isMenuActive, setIsMenuActive] = useState(false);
-  const [isSearchActive, setIsSearchActive] = useState(false);
-  const navigate = useNavigate();
 
-  // Función para alternar el menú
-  const toggleMenu = () => {
-    setIsMenuActive(!isMenuActive);
-  };
-
-  // Función para cerrar el menú
-  const closeMenu = () => {
-    setIsMenuActive(false);
-  };
+  const eventHandlers = useIconEventHandle();
+  const { isMenuActive,isSearchActive, handleMenuToggle, handleCloseMenu } = useMenuToggle();
+  const isDesktop = useIsDesktop();
 
 
-  // Función para eventos click en los iconos del componente HeaderRightIcons
-  const handleUserClick = () => {
-    console.log("User icon clicked");
-  };
-  const handleSearchClick = () => {
-    setIsSearchActive(!isSearchActive);
-  };
-  const handleCartClick = () => {
-    navigate("/cart"); 
-  };
-  const eventHandlers = {
-    user: handleUserClick,
-    search: handleSearchClick,
-    cart: handleCartClick,
-  };
-
-  const isDesktop = !useIsDesktop();
   return (
     <>
-      <header className={styles.header}>
-        {/* Icono del menú */}
-        {isDesktop && <Icon name="bx-menu" onClick={toggleMenu} />}
+      <header className={styles['header']}>
+ 
+        {!isDesktop && <Icon iconName={IconName.Menu} onClick={handleMenuToggle} />}
 
-        {/* Logo */}
-        <Link to="/" className={styles.header__logo}>
-          <img
-            src={logo}
-            alt="Logo de TAM"
-            className={styles.header__logo_img}/>
+        <Link to={ModuleRoutes.HOME} className={styles['header__logo']}>
+         <Logo/>
           </Link>
 
-        {/* Lista de navegación */}
-        <Nav isMenuActive={isMenuActive} />
+        <Nav isMenuActive={isMenuActive}/>
 
-        {/* Íconos a la derecha */}
         <HeaderRightIcons events={eventHandlers} />
 
-        {/* Caja de búsqueda */}
         <SearchBoxM isSearchActive={isSearchActive} />
       </header>
-      {/* Overlay (invisible por defecto) */}
+
       <div
-        className={`${styles.overlay} ${isMenuActive ? styles.active : ""}`}
-        onClick={closeMenu}
+        className={`${styles['overlay']} ${isMenuActive ? styles['active'] : ""}`}
+        role="button"
+        onClick={handleCloseMenu}
       ></div>
     </>
   );

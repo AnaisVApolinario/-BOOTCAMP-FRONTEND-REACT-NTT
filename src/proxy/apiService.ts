@@ -1,3 +1,4 @@
+import { LoginType } from '../domain/loginType';
 const BASE_URL = "https://dummyjson.com";
 export const apiService = {
   getCategories: async () => {
@@ -17,6 +18,29 @@ export const apiService = {
     } catch (error) {
       console.error(error);
     }
-  }
+  },
+  
+  login: async (loginData: LoginType) => {
+    try {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: loginData.username, password: loginData.password }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        return { success: true, data }; 
+      } else {
+        const errorData = await response.json();
+        return { success: false, message: errorData.message || "Credenciales inválidas" }; 
+      }
+    } catch (error) {
+      console.error(error);
+      return { success: false, message: "Error al iniciar sesión. Intenta más tarde." }; 
+    }
+  },
+  
 
 };

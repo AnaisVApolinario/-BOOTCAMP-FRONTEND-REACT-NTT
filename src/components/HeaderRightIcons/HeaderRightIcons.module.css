@@ -21,3 +21,11 @@
   font-size: 0.6rem;
   font-weight: 500;
 }
+.session__container{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+}
+.session__title{
+  font-size: 14px;
+}

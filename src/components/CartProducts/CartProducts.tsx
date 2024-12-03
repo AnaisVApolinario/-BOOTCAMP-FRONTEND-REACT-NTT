@@ -1,16 +1,15 @@
 import { useCartContext } from "../../context/CartContext";
-import ResumenM from "../../utils/components/resumenM/ResumenM";
+import ResumenM from "../resumenM/ResumenM";
 import CartItem from "../CartItem/CartItem";
 import styles from "./CartProducts.module.css";
 
 const CartProducts = () => {
   const { cartItems } = useCartContext();
   return (
-    <div className={styles["carrito"]}>
-      <h1 className={styles["carrito__titulo"]}>Carrito de Compras</h1>
-      <div className={styles["carrito__contenedor"]}>
-        {/* Lista de productos */}
-        <div className={styles["carrito__productos"]}>
+    <div className={styles["cart"]}>
+      <h1 className={styles["cart__title"]}>Carrito de Compras</h1>
+      <div className={styles["cart__container"]}>
+        <div className={styles["cart__products"]}>
         {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <CartItem
@@ -26,8 +25,8 @@ const CartProducts = () => {
             <h3>No hay productos en el carrito.</h3>
           )}
         </div>
-        {/* Resumen del pedido */}
-        <div className={styles["carrito__resumen"]}>
+    
+        <div className={styles["cart__resumen"]}>
          <ResumenM/>
         </div>
       </div>

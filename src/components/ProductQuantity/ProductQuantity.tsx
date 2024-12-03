@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { CounterButton } from "../../utils/components/CounterButton/CounterButton";
+import { CounterButton } from "../CounterButton/CounterButton";
 import styles from "./ProductQuantity.module.css";
 
 interface ProductQuantityProps {
-  quantity: number; // Cantidad de productos
+  quantity: number; 
   onQuantityChange: (quantity: number) => void; 
   isQuantityButtonCart?:boolean
 }

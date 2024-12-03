@@ -16,18 +16,24 @@
   transition: left 0.3s ease; 
   z-index: 1000;
   overflow-y: auto;
-  /* padding: 2rem; */
 }
 .nav__list {
   display: flex;
   gap: 2.5rem;
   padding: 1.5rem;
   flex-direction: column;
-  /* list-style: none; */
   margin: 0;
 }
 .active {
   display: block;
+}
+.session__container{
+  display: flex;
+  align-items: center;
+  gap:0.5rem;
+}
+.session__title{
+  font-size: 14px;
 }
 @media (min-width: 768px) {
   .nav{

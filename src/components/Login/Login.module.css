@@ -1,0 +1,90 @@
+.login {
+  width: 100vw;
+  height: 100vh;
+  background: var(--second-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login__container {
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.login__welcomeSection {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.login__containerInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.login__description {
+  margin: 20px 0;
+}
+.login__signInSection {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login__subtitle {
+  color: white;
+  margin-bottom: 20px;
+}
+.login__signInSection input {
+  width: 100%;
+  padding: 0.5rem 1.5rem;
+  margin: 10px 0;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  outline: none;
+}
+.login__signInSection input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.login__forgotPassword {
+  margin-top: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.login__forgotPassword:hover {
+  text-decoration: underline;
+}
+.error {
+  color: rgb(233, 63, 63);
+  font-size: 0.8rem; 
+  margin-top: 0.25rem; 
+}
+@media (min-width: 768px) {
+  .login__container {
+    width: 80%;
+    flex-direction: row;
+    align-items: center;
+  }
+  .login__welcomeSection {
+    max-width: 50%;
+  }
+  .login__subtitle {
+    font-size: 2rem;
+    text-align: unset;
+  }
+  .login__signInSection {
+    width: 40%;
+    height: 90%;
+  }
+}

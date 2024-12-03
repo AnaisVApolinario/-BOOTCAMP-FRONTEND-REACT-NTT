@@ -1,35 +1,42 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from "react";
 
-// Crear el contexto
-interface VisibilityContextType {
-  isFooterEmpty: boolean;
-  setIsFooterEmpty: React.Dispatch<React.SetStateAction<boolean>>; // Tipo del setter
-  isBannerVisible: boolean;
-  setIsBannerVisible: React.Dispatch<React.SetStateAction<boolean>>; // Tipo del setter
-}
-const VisibilityContext = createContext<VisibilityContextType | undefined>(undefined);
-
-// Crear un provider para envolver tu aplicación y compartir el estado
-interface  VisibilityProviderProps {
-  children: React.ReactNode;
+interface IVisibilityContext {
+  toggles: Record<string, boolean>; 
+  toggle: (key: string) => void; 
+  setActive: (key: string, value: boolean) => void;
 }
 
-export const VisibilityProvider: React.FC<VisibilityProviderProps> = ({ children }) => {
-  const [isFooterEmpty, setIsFooterEmpty] = useState<boolean>(false);
-  const [isBannerVisible, setIsBannerVisible] = useState<boolean>(true);
+const VisibilityContext = createContext<IVisibilityContext | undefined>(undefined);
+
+export const VisibilityProvider: React.FC<{ children: ReactNode }> = ({ children })=> {
+  const [toggles, setToggles] = useState<Record<string, boolean>>({});
+
+  const toggle = (key: string) => {
+    setToggles((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const setActive = (key: string, value: boolean) => {
+    setToggles((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 
   return (
-    <VisibilityContext.Provider value={{ isFooterEmpty, setIsFooterEmpty, isBannerVisible, setIsBannerVisible }}>
+    <VisibilityContext.Provider value={{ toggles, toggle, setActive }}>
       {children}
     </VisibilityContext.Provider>
   );
 };
 
-// Custom hook para usar el contexto
-export const useVisibilityContext = () => {
+export const useVisibilityContext = (): IVisibilityContext => {
   const context = useContext(VisibilityContext);
-  if (context === undefined) {
-    throw new Error("useVisibility debe ser usado dentro de un VisibilityProvider");
+  if (!context) {
+    throw new Error("useToggleContext must be used within a ToggleProvider");
   }
   return context;
 };
+

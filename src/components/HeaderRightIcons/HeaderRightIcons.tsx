@@ -1,26 +1,31 @@
-import styles from "./HeaderRightIcons.module.css"; 
-import useIsDesktop from '../../hooks/useIsDesktop';
-import { Icon } from "../../utils/components/Icon/Icon";
+import styles from "./HeaderRightIcons.module.css";
+import useIsDesktop from "../../hooks/useIsDesktop";
+import Icon from "../Icon/Icon";
 import { useCartContext } from "../../context/CartContext";
+import { IconName } from "../../domain/IconName";
 interface IHeaderRightIcons {
   events?: {
-    [key:string]: ()=>void
+    [key: string]: () => void;
   };
 }
-const HeaderRightIcons: React.FC<IHeaderRightIcons> = ({events = {}}) => {
+const HeaderRightIcons: React.FC<IHeaderRightIcons> = ({ events = {}}) => {
+  const firstname = sessionStorage.getItem("firstname");
   const isDesktop = useIsDesktop();
 
   const { getCartQuantity } = useCartContext();
 
   return (
-    <div className={styles.header__icons}>
-      {/* Ícono de usuario solo para desktop */}
-      {isDesktop && <Icon name="bx-user" onClick={events['user']} />}
-      {/* Ícono de búsqueda */}
-      <Icon name="bx-search" onClick={events['search']} />
+    <div className={styles["header__icons"]}>
+      {isDesktop && (
+        <div className={styles['session__container']}>
+          <p className={styles['session__title']}>Hola {firstname}</p>
+          <Icon iconName={IconName.User} onClick={events["user"]} />
+        </div>
+      )}
 
-      {/* Ícono de carrito */}
-      <Icon name="bx-cart" onClick={events['cart']}>
+      <Icon iconName={IconName.Search} onClick={events["search"]} />
+
+      <Icon iconName={IconName.Cart} onClick={events["cart"]}>
         <span>{getCartQuantity()}</span>
       </Icon>
     </div>

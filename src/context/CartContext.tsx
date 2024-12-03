@@ -1,53 +1,57 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import CartItem from "../components/CartItem/CartItem";
+import { createContext, ReactNode, useContext, useReducer } from "react";
+import { CartActionType, CartItem } from "../domain/cartActionType";
+import { CartReducer } from "./CartReducer";
 
-interface CartItem {
-  id: number;
-  img?: string;
-  title?: string;
-  price?: number;
-  quantity: number; 
 
-}
 
 interface CartContextType {
   cartItems: CartItem[];
-  updateCartItem: (id: number, quantity: number, img?: string, title?: string, price?: number) => void; // Actualizar cantidad de un producto
-  removeCartItem: (id: number) => void; // Eliminar un producto del carrito
-  getCartQuantity: () => number; // Obtener cantidad total de productos en el carrito
-  getCartTotal: () => number; // Obtener el total del carrito
+  updateCartItem: (id: number, quantity: number, img?: string, title?: string, price?: number) => void; 
+  removeCartItem: (id: number) => void; 
+  getCartQuantity: () => number; 
+  getCartTotal: () => number; 
+  clearCart:()=>void;
 }
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  
+  const initialCartState: CartItem[] = [];
+
+ const [cartItems, dispatch] = useReducer(CartReducer, initialCartState);
 
   const updateCartItem = (id: number, quantity: number, img?: string, title?: string, price?: number) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === id);
-      if (existingItem) {
-        // Actualiza la cantidad del producto existente
-        return prevItems.map((item) =>
-          item.id === id ? { ...item, quantity } : item
-        );
-      } else {
-        // Agrega un nuevo producto al carrito
-        return [...prevItems, { id, img, title, price, quantity }];
-      }
-    });
+    const existingItem = cartItems.find(item => item.id === id);
+    dispatch({
+      type: CartActionType.UPDATE_CART_ITEM,
+      payload: { id,  
+        quantity: existingItem ? existingItem.quantity + quantity : quantity, 
+        img, title, price },
+    })
   };
+  
+  const removeCartItem = (id:number)=>{
+    dispatch({
+      type:CartActionType.REMOVE_CART_ITEM,
+      payload:{id}
+    })
+  }
+
+  const clearCart=()=>{
+    dispatch({
+      type:CartActionType.CLEAR_CART,
+    })
+  }
 
   const getCartQuantity = () =>
     cartItems.reduce((total, item) => total + item.quantity, 0);
-  const removeCartItem = (id: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
+  
   const getCartTotal = () => {
     return cartItems.reduce((total, item) => total + (item.price || 0) * item.quantity, 0);
   };
 
   return (
-    <CartContext.Provider value={{ cartItems, updateCartItem, getCartQuantity, removeCartItem,getCartTotal}}>
+    <CartContext.Provider value={{ cartItems, updateCartItem,removeCartItem, clearCart, getCartQuantity, getCartTotal}}>
       {children}
     </CartContext.Provider>
   );

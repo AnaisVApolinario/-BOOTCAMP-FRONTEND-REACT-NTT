@@ -1,13 +1,15 @@
+import { useVisibilityContext } from "../../context/VisibilityContext";
 import Banner from "../../components/Banner/Banner";
 import ProductList from "../../components/ProductList/ProductList";
-import { useVisibilityContext } from "../../context/VisibilityContext";
 
 const HomePage = () => {
- 
-  const {isBannerVisible}= useVisibilityContext();
+
+  const { toggles } = useVisibilityContext();
+  const isBannerActive = toggles["banner"] ?? true; 
+
   return (
     <>
-       {isBannerVisible && <Banner />}
+       {isBannerActive && <Banner />}
       <ProductList />
     </>
   );

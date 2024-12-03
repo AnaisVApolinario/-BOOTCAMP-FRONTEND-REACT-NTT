@@ -3,9 +3,6 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  /* background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .form__title {
@@ -68,6 +65,6 @@
 
 .error {
   color: red;
-  font-size: 0.8rem; /* Tamaño más pequeño que el texto normal */
-  margin-top: 0.25rem; /* Separación del input */
+  font-size: 0.8rem; 
+  margin-top: 0.25rem; 
 }

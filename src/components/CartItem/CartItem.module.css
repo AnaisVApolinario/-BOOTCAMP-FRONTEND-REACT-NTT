@@ -37,20 +37,6 @@
   justify-content: center;
 }
 
-/* .carrito__boton {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-  border-radius: 3px;
-}
-
-.carrito__valor {
-  font-size: 1rem;
-  font-weight: bold;
-} */
-
 .cart__delete {
   background-color: transparent;
   border: none;

@@ -1,0 +1,15 @@
+.nav__submenu-link {
+  color: var(--second-color);
+  text-decoration: none;
+  margin-bottom: 1rem;
+}
+.nav__submenu-link:hover{
+  color: #551a8b;
+}
+
+@media (min-width: 768px) {
+  .nav__submenu-link:hover{
+    color: var(--bg-color);
+  }
+
+}

@@ -1,5 +1,5 @@
 
-import styles from './NotFound.module.css'; // Archivo CSS con BEM
+import styles from './NotFound.module.css'; 
 
 const NotFound = () => {
   return (

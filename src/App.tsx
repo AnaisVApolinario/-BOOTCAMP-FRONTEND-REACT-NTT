@@ -1,36 +1,28 @@
-// import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import HomePage from "./pages/Home/HomePage";
-import CartPage from "./pages/Cart/CartPage";
-import { SearchProvider } from "./context/searchContext";
-import { CartProvider } from "./context/CartContext";
-import { CategoryProvider } from "./context/CategoryContext";
-import { VisibilityProvider } from "./context/VisibilityContext";
 import NotFound from "./pages/NotFound/NotFound";
 import MainLayout from "./utils/layout/MainLayout";
-import EnvioPage from "./pages/Envio/EnvioPage";
+import { ModuleRoutes } from "./router/routes";
+import LoginPage from "./pages/Login/LoginPage";
+import withAuth from "./HOC/withAuth";
+import Home from "./pages/Home/HomePage";
+import Form from "./pages/Envio/EnvioPage";
+import Cart from "./pages/Cart/CartPage";
 
+const HomeWithAuth = withAuth(Home);
+const FormWithAuth = withAuth(Form);
+const CartWithAuth = withAuth(Cart);
 function App() {
   return (
-    <>
-      <VisibilityProvider>
-        <CartProvider>
-          <SearchProvider>
-            <CategoryProvider>
-              <Routes>
-                <Route path="/" element={<MainLayout />}>
-                  <Route index element={<HomePage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/form" element={<EnvioPage />} />
-                </Route>
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </CategoryProvider>
-          </SearchProvider>
-        </CartProvider>
-      </VisibilityProvider>
-    </>
+    <Routes>
+      <Route path={ModuleRoutes.HOME} element={<MainLayout />}>
+        <Route index element={<HomeWithAuth />} />
+        <Route path={ModuleRoutes.CART} element={<CartWithAuth />} />
+        <Route path={ModuleRoutes.FORM} element={<FormWithAuth />} />
+      </Route>
+      <Route path={ModuleRoutes.LOGIN} element={<LoginPage />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }
 

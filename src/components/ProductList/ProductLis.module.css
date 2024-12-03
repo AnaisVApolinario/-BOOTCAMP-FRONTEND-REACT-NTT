@@ -58,9 +58,6 @@
   margin: 10px 0;
 }
 
-
-
-/*Empty*/
 .empty__message {
   position: absolute;
   left: 50%;
@@ -71,10 +68,8 @@
 
 }
 
-/* Media Query para pantallas mayores a 768px */
 @media (min-width: 768px) {
 
-    /* Products  */
   .products {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem; 

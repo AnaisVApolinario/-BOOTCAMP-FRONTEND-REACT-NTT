@@ -1,4 +1,4 @@
-/* Estilos del Footer */
+
 .footer {
   display: grid;
   gap: 20px;
@@ -79,7 +79,6 @@
   margin-top: 20px;
 }
 
-/* Media Query */
 @media (min-width: 768px) {
   .footer {
     grid-template-columns: 1fr 1fr;

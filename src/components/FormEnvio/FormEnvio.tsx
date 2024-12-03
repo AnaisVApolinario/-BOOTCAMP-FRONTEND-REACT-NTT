@@ -1,113 +1,64 @@
 import { useState } from "react";
 import styles from "./FormEnvio.module.css";
-import { Button } from "../../utils/components/Button/Button";
-import InputField from "../../utils/components/Input/InputField";
-import {
-  validateCelular,
-  validateDireccion,
-  validateDistrito,
-  validateText,
-} from "../../utils/helpers/validation";
-import { useDistritos } from "../../hooks/useDistritos";
-import Alert from "../../utils/components/Alert/Alert";
+import { Button } from "../Button/Button";
+import InputField from "../Input/InputField";
+import { useDistrict } from "../../hooks/useDistrict";
+import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
+import useForm from "../../hooks/useForm";
+import { FieldName } from "@/domain/formActionType";
+import { ModuleRoutes } from "@/router/routes";
 const FormEnvio = () => {
   const navigate = useNavigate();
-  const distritos = useDistritos();
+  const districts = useDistrict();
   const [showAlert, setShowAlert] = useState(false);
+  const { clearCart } = useCartContext();
+  const { formData, errors, handleChange, handleSubmit } =useForm([
+    FieldName.Nombre,
+    FieldName.Apellido,
+    FieldName.Distrito,
+    FieldName.Direccion,
+    FieldName.Referencia,
+    FieldName.Celular,
+  ]);
 
-  const [formData, setFormData] = useState({
-    Nombre: "",
-    Apellido: "",
-    Distrito: "",
-    Direccion: "",
-    Celular: "",
-  });
-
-  const [errors, setErrors] = useState({
-    Nombre: "",
-    Apellido: "",
-    Distrito: "",
-    Direccion: "",
-    Celular: "",
-  });
-
-  const validateField = (name: string, value: string): string => {
-    switch (name) {
-      case "Nombre":
-      case "Apellido":
-        return validateText(value);
-      case "Celular":
-        return validateCelular(value);
-      case "Distrito":
-        return validateDistrito(value);
-      case "Direccion":
-        return validateDireccion(value);
-      default:
-        return "";
-    }
-  };
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    // Validar el campo
-    setErrors({ ...errors, [name]: validateField(name, value) });
-  };
-  const handleSubmit = (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newErrors = {
-      Nombre: validateField("Nombre", formData.Nombre),
-      Apellido: validateField("Apellido", formData.Apellido),
-      Distrito: validateField("Distrito", formData.Distrito),
-      Direccion: validateField("Direccion", formData.Direccion),
-      Celular: validateField("Celular", formData.Celular),
-    };
-
-    setErrors(newErrors);
-
-    // Revisar si hay errores o campos vacíos
-    const hasErrors = Object.values(newErrors).some((error) => error !== "");
-    const hasEmptyFields = Object.values(formData).some(
-      (value) => value === ""
-    );
-
-    if (hasErrors || hasEmptyFields) {
-      console.warn(
-        "Formulario inválido. Revisa los errores y completa todos los campos."
-      );
-      return; // No enviar ni consologuear si hay errores
+    const result = handleSubmit();
+    if (result) {
+      setShowAlert(true);
+      console.log("Formulario enviado con éxito:", formData);
     }
-
-    // Si no hay errores ni campos vacíos, enviar datos
-    setShowAlert(true);
-    console.log("Formulario enviado con éxito:", formData);
   };
   const handleCloseAlert = () => {
     setShowAlert(false);
-    navigate('/'); 
-  }
+    navigate(ModuleRoutes.HOME);
+    clearCart();
+  };
 
   return (
     <>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={onSubmit}>
         <h2 className={styles.form__title}>Detalles de Compra</h2>
         <div className={styles.form__fullName}>
           <InputField
             name="Nombre"
             id="Nombre"
+            label="Nombre"
             placeholder="Ingrese su nombre"
             value={formData.Nombre}
             onChange={handleChange}
           >
-            {errors.Nombre && <p className={styles.error}>{errors.Nombre}</p>}
+            {errors.Nombre && (
+              <p className={styles.error}>{errors.Nombre}</p>
+            )}
           </InputField>
           <InputField
             name="Apellido"
             id="Apellido"
+            label="Apellido"
             placeholder="Ingrese su apellido"
             value={formData.Apellido}
             onChange={handleChange}
@@ -132,7 +83,7 @@ const FormEnvio = () => {
             <option value="" disabled>
               Selecciona tu distrito
             </option>
-            {distritos.map((distrito) => (
+            {districts.map((distrito) => (
               <option key={distrito.id} value={distrito.name}>
                 {distrito.name}
               </option>
@@ -143,14 +94,26 @@ const FormEnvio = () => {
         <InputField
           name="Direccion"
           id="Direccion"
+          label="Dirección"
           placeholder="Ingrese su dirección"
           value={formData.Direccion}
           onChange={handleChange}
         />
         {errors.Direccion && <p className={styles.error}>{errors.Direccion}</p>}
         <InputField
+          name="Referencia"
+          id="Referencia"
+          label="Referencia"
+          placeholder="Ingrese la referencia"
+          value={formData.Referencia}
+          onChange={handleChange}
+        >
+          {errors.Referencia && <p className={styles.error}>{errors.Referencia}</p>}
+        </InputField>
+        <InputField
           name="Celular"
           id="Celular"
+          label="Celular"
           placeholder="Ingrese su número"
           value={formData.Celular}
           onChange={handleChange}
@@ -165,6 +128,7 @@ const FormEnvio = () => {
           icon="✔️"
           message="Su pedido ha sido registrado con éxito."
           onClose={handleCloseAlert}
+          textButton="Aceptar"
         />
       )}
     </>

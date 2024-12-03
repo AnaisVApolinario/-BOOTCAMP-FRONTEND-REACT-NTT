@@ -1,41 +1,59 @@
-import React, { useEffect } from "react";
 import styles from "./Nav.module.css";
-import { NavItem } from "../../utils/components/NavItem/NavItem";
-import { Icon } from "../../utils/components/Icon/Icon";
-import useIsDesktop from '../../hooks/useIsDesktop';
-import { apiService } from "../../proxy/apiService";
-import { useCategoryContext } from "../../context/CategoryContext";
+import { NavItem } from "../NavItem/NavItem";
+import Icon from "../Icon/Icon";
+import useIsDesktop from "../../hooks/useIsDesktop";
+import { IconName } from "../../domain/IconName";
+import { useVisibilityContext } from "../../context/VisibilityContext";
+import { useSearchContext } from "@/context/searchContext";
+import { useCategoryContext } from "@/context/CategoryContext";
+import { useFetchProducts } from "@/hooks/useFetchProducts";
+import { useFilteredProducts } from "@/hooks/useFilteredProducts";
+import { useNavigate } from "react-router-dom";
+import { ModuleRoutes } from "@/router/routes";
 interface INav {
   isMenuActive?: boolean;
 }
 
 const Nav: React.FC<INav> = ({ isMenuActive }) => {
-  const {setCategories } = useCategoryContext();
+  const { setActive } = useVisibilityContext();
+  const { setSearchQuery } = useSearchContext();
+  const { setSelectedCategory } = useCategoryContext();
+  const { products } = useFetchProducts();
+  const newProducts = useFilteredProducts(products);
+  const navigate = useNavigate();
+  const firstname = sessionStorage.getItem("firstname");
+  const handleHomeClick = () => {
+    setSearchQuery("");
+    setSelectedCategory("");
+    setActive("menu", false);
+    setActive("banner", true);
+    newProducts;
+  };
+  const handleCloseMenu = () => {
+    setActive("menu", false);
+  };
+  const handleLogout = () => {
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("firstname");
+    navigate(ModuleRoutes.LOGIN);
+  };
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const data = await apiService.getCategories();
-        setCategories(data);
-      } catch (err) {
-        throw new Error("Error al obtener las categorías");
-      }
-    };
-
-    fetchCategories();
-  }, [setCategories]);
-  const isDesktop = !useIsDesktop();
+  const isDesktop = useIsDesktop();
   return (
-    <nav className={`${styles.nav} ${isMenuActive ? styles.active : ""}`}>
-      { isDesktop &&    <div className={styles.nav__header}>
-        <Icon name="bx-user" />
-        <Icon name="bx-x" />
-      </div>
-      }
-        
-      <ul className={styles.nav__list}>
-        <NavItem name="Home" path="/"/>
-        <NavItem name="Categorias" isDropdown={true}/>
+    <nav className={`${styles["nav"]} ${isMenuActive ? styles["active"] : ""}`}>
+      {!isDesktop && (
+        <div className={styles["nav__header"]}>
+          <div className={styles["session__container"]}>
+            <p className={styles["session__title"]}>Hola {firstname}</p>
+            <Icon iconName={IconName.User} onClick={handleLogout}  />
+          </div>
+          <Icon iconName={IconName.Close} onClick={handleCloseMenu} />
+        </div>
+      )}
+
+      <ul className={styles["nav__list"]}>
+        <NavItem name="Inicio" path="/" onClick={handleHomeClick} />
+        <NavItem name="Categorias" isDropdown={true} />
       </ul>
     </nav>
   );
