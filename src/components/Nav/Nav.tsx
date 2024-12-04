@@ -21,6 +21,7 @@ const Nav: React.FC<INav> = ({ isMenuActive }) => {
   const { products } = useFetchProducts();
   const newProducts = useFilteredProducts(products);
   const navigate = useNavigate();
+  // deber'ia leer del contexto no del storage de lo contrario cualquiera podr'ia modificarlo
   const firstname = sessionStorage.getItem("firstname");
   const handleHomeClick = () => {
     setSearchQuery("");
@@ -33,6 +34,7 @@ const Nav: React.FC<INav> = ({ isMenuActive }) => {
     setActive("menu", false);
   };
   const handleLogout = () => {
+    // usar un util
     sessionStorage.removeItem("accessToken");
     sessionStorage.removeItem("firstname");
     navigate(ModuleRoutes.LOGIN);

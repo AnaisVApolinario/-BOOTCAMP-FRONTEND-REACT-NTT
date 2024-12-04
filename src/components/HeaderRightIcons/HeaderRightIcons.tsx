@@ -9,6 +9,7 @@ interface IHeaderRightIcons {
   };
 }
 const HeaderRightIcons: React.FC<IHeaderRightIcons> = ({ events = {}}) => {
+  // deber'ia leer del contexto no del storage de lo contrario cualquiera podr'ia modificarlo
   const firstname = sessionStorage.getItem("firstname");
   const isDesktop = useIsDesktop();
 

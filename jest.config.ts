@@ -1,3 +1,4 @@
+// los tests no se ejecutan
 import type { Config } from '@jest/types';
 const config: Config.InitialOptions = {
   testEnvironment: "jsdom",
