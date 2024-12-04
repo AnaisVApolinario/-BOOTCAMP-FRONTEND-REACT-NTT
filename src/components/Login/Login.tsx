@@ -1,3 +1,4 @@
+// no hay test
 import { apiService } from "@/proxy/apiService";
 import { Button } from "../Button/Button";
 import Logo from "../Logo/Logo";
@@ -32,6 +33,7 @@ const Login = () => {
         });
 
         if (response.success) {
+          // deber'ia ser un util esto y evitar escribire la key de manera directa
           sessionStorage.setItem("accessToken", response.data.accessToken);
           sessionStorage.setItem("firstname", response.data.firstName);
           navigate(ModuleRoutes.HOME);
